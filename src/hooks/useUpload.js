@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { useAuth } from '../contexts/AuthContext'
-import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage'
+import { ref, getDownloadURL, uploadBytesResumable, deleteObject } from 'firebase/storage'
 import { collection, addDoc, doc, updateDoc, deleteDoc, arrayUnion } from 'firebase/firestore'
 import { db, storage } from '../services/Firebase.js'
 import { useFetchImages } from '../contexts/FetchImagesContext'
 import { idGen } from './utilities'
+import { async } from '@firebase/util'
 
 const useUpload = () => {
   const { user } = useAuth()
@@ -103,10 +104,31 @@ const useUpload = () => {
   const deleteAlbum = async (album) => {
     setUploadError(false)
     setIsLoading(true)
+
+    const otherAlbums = albums.filter(item => item.id !== album.id)
+
+    for (let i = 0; i < album.images.length; i++) {
+      let existsInOtherAlbum
+
+      otherAlbums.forEach(otherAlbum => {
+        if (!existsInOtherAlbum) existsInOtherAlbum = otherAlbum.images.some(otherAlbumImage => album.images[i].path === otherAlbumImage.path)
+      })
+
+      if (!existsInOtherAlbum) {
+        try {
+          const storageRef = ref(storage, album.images[i].path)
+          await deleteObject(storageRef)
+        } catch (e) {
+          setUploadError(e)
+          console.log("Error: ", e.message)
+        }
+      }
+    }
+
     try {
       const docRef = doc(db, user.uid, album.id)
       await deleteDoc(docRef)
-
+      
     } catch (e) {
       setUploadError(e)
       console.log("Error: ", e.message)

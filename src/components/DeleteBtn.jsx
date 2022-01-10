@@ -1,12 +1,15 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import useUpload from '../hooks/useUpload'
 
 const DeleteBtn = ({ album }) => {
+  const { deleteAlbum } = useUpload()
 
   const handleDeleteAlbum = (e) => {
     e.preventDefault()
     e.stopPropagation()
+    deleteAlbum(album)
   }
 
   const styles = {
