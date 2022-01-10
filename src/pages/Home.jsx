@@ -5,6 +5,7 @@ import { faFolderPlus, faFolderOpen } from '@fortawesome/free-solid-svg-icons'
 import '../styles/Home.css'
 import { useFetchImages } from '../contexts/FetchImagesContext'
 import useUpload from '../hooks/useUpload'
+import DeleteBtn from '../components/DeleteBtn'
 
 const Home = () => {
   const { albums } = useFetchImages()
@@ -53,6 +54,7 @@ const Home = () => {
           </div>
           {albums && albums.map(album => (
             <Link to={`/album/${album.id}`} className='albumGridItem flex column' key={album.id}>
+              <DeleteBtn album={album} />
               <FontAwesomeIcon icon={faFolderOpen} size='6x' />
               <p>{album.name}</p>
             </Link>

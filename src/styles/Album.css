@@ -7,7 +7,7 @@
   cursor: pointer;
 }
 
-.newFromSelected {
+.newFromSelected, .deleteSelected {
   background: var(--PRIMARY_LIGHT_HOVER);
   padding: 0.5rem 1rem;
   border-radius: 15px;
@@ -20,10 +20,15 @@
   width: 100%;
 }
 
-.newFromSelectedBtn {
+.newFromSelectedBtn, .deleteSelectedBtn {
   padding: 0 2rem;
   height: var(--INPUT_HEIGHT);
   margin: 1rem 0 0.5rem 0;
+}
+
+.deleteSelectedBtn{
+  background: var(--ERROR_COLOR);
+  margin: 0 1rem;
 }
 
 .reviewLinkDiv {
@@ -53,6 +58,10 @@
 
 @media only screen and (min-width: 600px) {
   .newFromSelected {
+    flex-direction: row;
+  }
+
+  .deleteSelected{
     flex-direction: row;
   }
 

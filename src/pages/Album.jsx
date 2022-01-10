@@ -50,11 +50,17 @@ const Album = () => {
             <div className='w100'>
               <ReviewLink user={user} album={currentAlbum} />
               {checkedImages.length ?
-                <form className='newFromSelected flex' onSubmit={handleNewAlbumFromSelected}>
-                  <p>Create new album from selected images:</p>
-                  <input type="text" className='newFromSelectedInput' onChange={(e) => setNewAlbumFromSelectedInput(e.target.value)} value={newAlbumFromSelectedInput} placeholder='New album name...' required />
-                  <button className='btn newFromSelectedBtn'>Create</button>
-                </form>
+                <>
+                  <form className='newFromSelected flex' onSubmit={handleNewAlbumFromSelected}>
+                    <p>Create new album from selected images:</p>
+                    <input type="text" className='newFromSelectedInput' onChange={(e) => setNewAlbumFromSelectedInput(e.target.value)} value={newAlbumFromSelectedInput} placeholder='New album name...' required />
+                    <button className='btn newFromSelectedBtn'>Create</button>
+                  </form>
+                  <form className='deleteSelected flex' onSubmit={null}>
+                    <p>Delete selected images?</p>
+                    <button className='btn deleteSelectedBtn'>Delete</button>
+                  </form>
+                </>
                 : null
               }
               <Dropzone albums={albums} user={user} albumNameInput={albumNameInput} />

@@ -5,6 +5,7 @@
 }
 
 .albumGridItem {
+  position: relative;
   color: inherit;
   text-decoration: none;
   aspect-ratio: 1;

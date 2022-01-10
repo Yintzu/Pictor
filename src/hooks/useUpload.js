@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage'
-import { collection, addDoc, doc, updateDoc, arrayUnion } from 'firebase/firestore'
+import { collection, addDoc, doc, updateDoc, deleteDoc, arrayUnion } from 'firebase/firestore'
 import { db, storage } from '../services/Firebase.js'
 import { useFetchImages } from '../contexts/FetchImagesContext'
 import { idGen } from './utilities'
@@ -100,6 +100,21 @@ const useUpload = () => {
     }
   }
 
+  const deleteAlbum = async (album) => {
+    setUploadError(false)
+    setIsLoading(true)
+    try {
+      const docRef = doc(db, user.uid, album.id)
+      await deleteDoc(docRef)
+
+    } catch (e) {
+      setUploadError(e)
+      console.log("Error: ", e.message)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   const existsInStorage = () => {
 
   }
@@ -108,6 +123,7 @@ const useUpload = () => {
     uploadImg,
     updateAlbumName,
     createNewAlbum,
+    deleteAlbum,
     isLoading,
     uploadError,
     progress,
