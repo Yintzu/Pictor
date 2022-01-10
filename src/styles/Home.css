@@ -1,0 +1,49 @@
+.albumGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  font-weight: bold;
+}
+
+.albumGridItem {
+  color: inherit;
+  text-decoration: none;
+  aspect-ratio: 1;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.albumGridItem:hover {
+  background: var(--PRIMARY_LIGHT_HOVER);
+}
+
+.newAlbumNameInput {
+  width: 100%;
+  min-width: initial;
+}
+
+.albumGridItemText {
+  height: var(--INPUT_HEIGHT);
+}
+
+.newAlbumBtn.btn {
+  padding: 0.5rem 0;
+  margin: 1rem 0;
+  color: var(--PRIMARY_LIGHT);
+  text-shadow: 1px 1px black;
+  width: 45%;
+}
+
+.newAlbumBtn.btn:last-child {
+  background-color: var(--ERROR_COLOR);
+}
+
+.newAlbumBtn.btn:last-child:active {
+  background-color: var(--ERROR_COLOR_DARK);
+}
+
+.newAlbumBtnWrapper {
+  width: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+}

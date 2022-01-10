@@ -1,0 +1,81 @@
+.lightboxOverlay {
+  position: fixed;
+  display: grid;
+  place-items: center;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.lightboxImgWrapper {
+  position: relative;
+  width: 80%;
+  height: 80vh;
+  margin: 0 auto;
+}
+
+.lightboxReviewIconWrapper {
+  font-size: 6rem;
+  position: absolute;
+  color: var(--PRIMARY_LIGHT);
+  z-index: 1;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(50%);
+}
+
+.likeBtn, .dislikeBtn{
+  background: var(--PRIMARY_GREEN);
+  border-radius: 50%;
+  padding: 1rem;
+  cursor: pointer;
+  margin: 0 1rem;
+  box-shadow: 0 0 10px black;
+}
+
+.dislikeBtn{
+  background: var(--ERROR_COLOR);
+}
+
+.unselectedLike{
+  background: rgb(90, 90, 90);
+}
+
+.lightboxImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.lightboxCloseBtn {
+  position: fixed;
+  cursor: pointer;
+  color: var(--PRIMARY_LIGHT);
+  top: 1rem;
+  right: 1rem;
+}
+
+.lightboxNavBtn {
+  color: var(--PRIMARY_LIGHT);
+  margin: 1rem;
+}
+
+.prevImgOverlay {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  inset: 0 50% 0 0;
+}
+
+.nextImgOverlay {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  position: fixed;
+  inset: 0 0 0 50%;
+}

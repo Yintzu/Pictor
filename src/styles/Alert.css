@@ -1,0 +1,14 @@
+.alert {
+  background: var(--PRIMARY_LIGHT_HOVER);
+  padding: 0.5rem 1rem;
+  border-radius: 15px;
+  margin: 1rem 0;
+  text-align: center;
+  flex-direction: column;
+}
+
+@media only screen and (min-width: 600px) {
+  .alert {
+    flex-direction: row;
+  }
+}

@@ -1,0 +1,43 @@
+.imageGrid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+}
+
+.imageGridItem {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  cursor: pointer;
+}
+
+.imageGridItem img {
+  display: block;
+  object-fit: contain;
+}
+
+.imgCheckbox {
+  position: absolute;
+  min-width: initial;
+  top: 0;
+  right: 0;
+  width: 1.5rem;
+}
+
+.imageGridLikeWrapper {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--PRIMARY_LIGHT);
+  font-size: 2rem;
+  padding: 0;
+}
+
+.imageGridLikeWrapper svg {
+  padding: 0.5rem;
+  margin: 0 0.5rem;
+}

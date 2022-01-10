@@ -1,0 +1,42 @@
+nav.navbar {
+  position: relative;
+  justify-content: flex-end;
+  height: var(--NAVBAR_HEIGHT);
+  background: var(--NAV_BG);
+  text-shadow: 1px 1px black;
+  color: var(--PRIMARY_LIGHT);
+  font-weight: bold;
+}
+
+.navLogo {
+  color: var(--PRIMARY_LIGHT);
+  position: absolute;
+  text-decoration: none;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+}
+
+.navMenu * {
+  margin: 0 1rem;
+}
+
+.navLogin, .navLogout {
+  color: var(--PRIMARY_LIGHT);
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-decoration: none;
+  background: var(--PRIMARY_GREEN);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--BTN_BORDER_RADIUS);
+}
+
+.navLogout{
+  background: var(--ERROR_COLOR);
+  cursor: pointer;
+}
+
+.navLogout:active{
+  background: var(--ERROR_COLOR_DARK);
+  cursor: pointer;
+}

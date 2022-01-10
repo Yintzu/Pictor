@@ -1,0 +1,9 @@
+.loginDiv {
+  min-height: 300px;
+  max-width: 600px;
+}
+
+.error {
+  padding: 1rem;
+  border-radius: 5px;
+}

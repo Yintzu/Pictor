@@ -1,0 +1,200 @@
+:root {
+  --NAV_BG: linear-gradient(0deg, rgb(63, 114, 31) 0%, rgb(99, 194, 55) 100%);
+  --BODY_BG: rgb(59, 59, 59);
+  --PRIMARY_LIGHT: rgb(241, 237, 233);
+  --PRIMARY_LIGHT_HOVER: rgb(211, 192, 171);
+  --PRIMARY_DARK: rgb(126, 89, 79);
+  --PRIMARY_GREEN: rgb(112, 196, 74);
+  --PRIMARY_GREEN_DARK: rgb(85, 155, 42) 0%;
+  --ERROR_COLOR: rgb(153, 68, 96);
+  --ERROR_COLOR_DARK: rgb(105, 48, 67);
+  --ERROR_BG: rgb(255, 208, 208);
+  --DROPZONE_BG: ;
+  /* --TEXT_COLOR: rgb(126, 89, 79); */
+  --TEXT_DARK: rgb(49, 30, 25);
+  --NAVBAR_HEIGHT: 5vh;
+  --INPUT_HEIGHT: 2.5rem;
+  --BTN_BORDER_RADIUS: 8px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--BODY_BG);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+input {
+  display: block;
+  border-color: var(--PRIMARY_DARK);
+  border-radius: 5px;
+  border-style: solid;
+  margin-left: auto;
+  margin-right: auto;
+  height: var(--INPUT_HEIGHT);
+  padding: 0 0.5rem;
+  width: 50%;
+  max-width: 500px;
+  min-width: 300px;
+  font-size: 1rem;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.page {
+  min-height: calc(100vh - var(--NAVBAR_HEIGHT));
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  min-height: 80vh;
+  max-width: max(640px, 75vw);
+  margin: 2rem auto;
+  padding: 1rem;
+  background: var(--PRIMARY_LIGHT);
+  color: var(--PRIMARY_DARK);
+  border-radius: 15px;
+  box-shadow: 3px 3px 10px black;
+}
+
+.btn {
+  border: none;
+  background: var(--PRIMARY_GREEN);
+  color: var(--PRIMARY_LIGHT);
+  text-shadow: 1px 1px black;
+  font-weight: bold;
+  font-size: 1.2rem;
+  border-radius: var(--BTN_BORDER_RADIUS);
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  padding: 1rem 3rem;
+}
+
+.btn:active {
+  background: var(--PRIMARY_GREEN_DARK);
+}
+
+.error {
+  color: var(--ERROR_COLOR);
+  background: var(--ERROR_BG);
+}
+
+.loading {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: initial;
+}
+
+.centerText {
+  text-align: center;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.justifyBetween {
+  justify-content: space-between;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.w100{
+  width: 100%;
+}
+
+.mxAuto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mx0 {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.my0 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.my1 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.my2 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.my3 {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.mb0 {
+  margin-bottom: 0;
+}
+
+.mb1 {
+  margin-bottom: 1rem;
+}
+
+.mb2 {
+  margin-bottom: 2rem;
+}
+
+.mb3 {
+  margin-bottom: 3rem;
+}
+
+.mt0 {
+  margin-top: 0;
+}
+
+.mt1 {
+  margin-top: 1rem;
+}
+
+.mt2 {
+  margin-top: 2rem;
+}
+
+.mt3 {
+  margin-top: 3rem;
+}
+
+.py0 {
+  padding-top: 0;
+  padding-bottom: 0;
+}
