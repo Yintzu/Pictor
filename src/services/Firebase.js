@@ -20,9 +20,9 @@ const storage = getStorage(app)
 const auth = getAuth(app)
 
 export {
-  app as default,
-  analytics,
-  db,
-  storage,
-  auth,
+	app as default,
+	analytics,
+	db,
+	storage,
+	auth,
 }

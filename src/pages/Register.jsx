@@ -1,23 +1,26 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import BackButton from '../components/BackButton'
 import { useAuth } from '../contexts/AuthContext'
 import '../styles/Register.css'
 
 const Register = () => {
-  const { registerUser, isLoading, error } = useAuth()
+  const { user, registerUser, isLoading, error } = useAuth()
+  const navigate = useNavigate()
 
   const [emailInput, setEmailInput] = useState('')
   const [passwordInput, setPasswordInput] = useState('')
   const [confirmPasswordInput, setConfirmPasswordInput] = useState('')
 
-  const registerSubmitHandler = (e) => {
+  const registerSubmitHandler = async (e) => {
     e.preventDefault()
-    if (passwordInput !== confirmPasswordInput) {
-      return
-    }
-    registerUser(emailInput, passwordInput)
-
+    if (passwordInput !== confirmPasswordInput) return console.log("passwords don't match")
+    await registerUser(emailInput, passwordInput)
   }
+
+  useEffect(() => {
+    if (user) navigate("/")
+  }, [user])
 
   return (
     <div className='register page flex'>
