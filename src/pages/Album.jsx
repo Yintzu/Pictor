@@ -40,10 +40,10 @@ const Album = () => {
   return (
     <div className='album page flex'>
       <div className='albumDiv container flex column justifyBetween'>
-        <BackButton />
         {currentAlbum &&
           <>
             <div className='w100'>
+              <BackButton />
               <AlbumTitle album={currentAlbum} albumNameInput={albumNameInput} setAlbumNameInput={setAlbumNameInput} />
               <ImageGrid album={currentAlbum} setCheckedImages={setCheckedImages} setLightboxDisplayImg={setLightboxDisplayImg} />
             </div>

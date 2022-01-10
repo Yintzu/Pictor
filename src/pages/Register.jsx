@@ -25,7 +25,7 @@ const Register = () => {
   return (
     <div className='register page flex'>
       <div className='container flex column'>
-        <BackButton />
+        <BackButton absolute={true} />
         <h1>Register</h1>
         <form className='flex column' onSubmit={registerSubmitHandler} >
           <input className='mb2' type="email" onChange={(e) => setEmailInput(e.target.value)} value={emailInput} placeholder='Email...' required />

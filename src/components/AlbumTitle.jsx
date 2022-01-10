@@ -19,13 +19,13 @@ const AlbumTitle = ({ album, albumNameInput, setAlbumNameInput }) => {
     <>
       {editMode ?
         <div className='flex'>
-          <span className='relative'>
-            <input type='text' className='my2' value={albumNameInput} onChange={(e) => setAlbumNameInput(e.target.value)} disabled={isLoading} />
-            <button className='btn absolute py0' onClick={handleSaveName} style={{ right: '0', top: '50%', transform: 'translate(100%, -50%)', height: 'var(--INPUT_HEIGHT)' }} disabled={isLoading}>Save</button>
+          <span className='flex'>
+            <input type='text' className='titleInput mb2' value={albumNameInput} onChange={(e) => setAlbumNameInput(e.target.value)} disabled={isLoading} />
+            <button className='titleBtn btn py0' onClick={handleSaveName} style={{ alignSelf: 'start', height: 'var(--INPUT_HEIGHT)' }} disabled={isLoading}>Save</button>
           </span>
         </div>
         :
-        <h1 className='centerText my2' style={{ height: 'var(--INPUT_HEIGHT)' }}>
+        <h1 className='centerText mb2 mt0' style={{ height: 'var(--INPUT_HEIGHT)' }}>
           <span style={{ position: 'relative' }}>
             {album.name}
             <FontAwesomeIcon icon={faPen} style={{ position: 'absolute', right: 'calc(0px - 3rem)', bottom: '5px', fontSize: '1.5rem', cursor: 'pointer' }} onClick={() => setEditMode(true)} />

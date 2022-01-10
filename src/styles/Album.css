@@ -41,6 +41,16 @@
   font-size: 1.5rem;
 }
 
+.titleInput{
+  width: 50vw;
+  min-width: 220px;
+  max-width: 400px;
+}
+
+.titleBtn{
+  padding: 0 1rem;
+}
+
 @media only screen and (min-width: 600px) {
   .newFromSelected {
     flex-direction: row;

@@ -3,10 +3,15 @@ import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronCircleLeft } from '@fortawesome/free-solid-svg-icons'
 
-const BackButton = () => {
+const BackButton = ({ absolute }) => {
   const navigate = useNavigate()
 
   const styles = {
+    cursor: 'pointer',
+    alignSelf: 'start',
+  }
+
+  const stylesAbsolute = {
     cursor: 'pointer',
     position: 'absolute',
     top: '1rem',
@@ -14,8 +19,8 @@ const BackButton = () => {
   }
 
   return (
-    <div className='backButton' style={styles} onClick={() => navigate(-1)}>
-      <FontAwesomeIcon icon={faChevronCircleLeft} size='4x'/>
+    <div className='backButton' style={absolute ? stylesAbsolute : styles} onClick={() => navigate(-1)}>
+      <FontAwesomeIcon icon={faChevronCircleLeft} size='3x' />
     </div>
   )
 }

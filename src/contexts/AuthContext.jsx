@@ -34,7 +34,7 @@ const AuthContextProvider = ({ children }) => {
   }
 
   const logoutUser = () => {
-    signOut(auth)
+    return signOut(auth)
   }
 
 

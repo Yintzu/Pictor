@@ -38,7 +38,7 @@ const Lightbox = ({ album, lightboxDisplayImg, setLightboxDisplayImg, handleLike
       <div className='nextImgOverlay' onClick={handleNextImg}>
         <FontAwesomeIcon icon={faChevronRight} className='lightboxNavBtn' size='6x' onClick={() => setLightboxDisplayImg(null)} />
       </div>
-      <FontAwesomeIcon icon={faTimesCircle} className='lightboxCloseBtn' size='6x' onClick={() => setLightboxDisplayImg(null)} />
+      <FontAwesomeIcon icon={faTimesCircle} className='lightboxCloseBtn' size='4x' onClick={() => setLightboxDisplayImg(null)} />
     </div>
   )
 }

@@ -106,6 +106,10 @@ a {
   text-align: center;
 }
 
+.none {
+  display: none !important;
+}
+
 .flex {
   display: flex;
   justify-content: center;
@@ -128,7 +132,7 @@ a {
   position: relative;
 }
 
-.w100{
+.w100 {
   width: 100%;
 }
 

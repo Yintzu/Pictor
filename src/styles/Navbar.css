@@ -17,11 +17,31 @@ nav.navbar {
   font-size: 2rem;
 }
 
+.navMenu {
+  display: none;
+}
+
 .navMenu * {
   margin: 0 1rem;
 }
 
-.navLogin, .navLogout {
+.mobileNavMenu {
+  position: fixed;
+  inset: var(--NAVBAR_HEIGHT) 0 0 0;
+  background: rgb(71, 71, 71);
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.mobileNavMenu * {
+  margin: 1rem;
+}
+
+.navLogin,
+.navLogout {
   color: var(--PRIMARY_LIGHT);
   font-size: 1.3rem;
   font-weight: bold;
@@ -31,12 +51,36 @@ nav.navbar {
   border-radius: var(--BTN_BORDER_RADIUS);
 }
 
-.navLogout{
+.navLogout {
   background: var(--ERROR_COLOR);
   cursor: pointer;
 }
 
-.navLogout:active{
+.navLogout:active {
   background: var(--ERROR_COLOR_DARK);
   cursor: pointer;
+}
+
+.hamburger {
+  cursor: pointer;
+  font-size: 2rem;
+  margin: 0 1rem;
+}
+
+@media only screen and (min-width: 900px) {
+  .navMenu {
+    display: initial;
+  }
+
+  .navMenu * {
+    margin: 0 1rem;
+  }
+
+  .hamburger {
+    display: none;
+  }
+
+  .mobileNav {
+    display: none;
+  }
 }
