@@ -128,7 +128,7 @@ const useUpload = () => {
     try {
       const docRef = doc(db, user.uid, album.id)
       await deleteDoc(docRef)
-      
+
     } catch (e) {
       setUploadError(e)
       console.log("Error: ", e.message)
@@ -137,8 +137,46 @@ const useUpload = () => {
     }
   }
 
-  const existsInStorage = () => {
+  const deleteImages = async (album, selectedImages) => {
+    setUploadError(false)
+    setIsLoading(true)
+    try {
+      const docRef = doc(db, user.uid, album.id)
 
+      let newImages = []
+      album.images.forEach(item => {
+        if (!selectedImages.some(image => image.id === item.id)) newImages.push(item)
+      })
+
+      const otherAlbums = albums.filter(item => item.id !== album.id)
+
+      for (let i = 0; i < selectedImages.length; i++) {
+        let existsInOtherAlbum
+
+        otherAlbums.forEach(otherAlbum => {
+          if (!existsInOtherAlbum) existsInOtherAlbum = otherAlbum.images.some(otherAlbumImage => selectedImages[i].path === otherAlbumImage.path)
+        })
+
+        if (!existsInOtherAlbum) {
+          try {
+            const storageRef = ref(storage, selectedImages[i].path)
+            await deleteObject(storageRef)
+          } catch (e) {
+            setUploadError(e)
+            console.log("Error: ", e.message)
+          }
+        }
+      }
+
+      await updateDoc(docRef, {
+        images: newImages
+      })
+    } catch (e) {
+      setUploadError(e)
+      console.log("Error: ", e.message)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return {
@@ -146,6 +184,7 @@ const useUpload = () => {
     updateAlbumName,
     createNewAlbum,
     deleteAlbum,
+    deleteImages,
     isLoading,
     uploadError,
     progress,

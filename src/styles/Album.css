@@ -31,6 +31,10 @@
   margin: 0 1rem;
 }
 
+.deleteSelectedBtn:active{
+  background: var(--ERROR_COLOR_DARK);
+}
+
 .reviewLinkDiv {
   margin: 1rem 0;
 }

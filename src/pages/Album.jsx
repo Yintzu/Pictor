@@ -13,7 +13,7 @@ import '../styles/Album.css'
 
 const Album = () => {
   const { user } = useAuth()
-  const { createNewAlbum } = useUpload()
+  const { createNewAlbum, deleteImages } = useUpload()
   const { albums } = useFetchImages()
   const { id } = useParams()
   const [currentAlbum, setCurrentAlbum] = useState()
@@ -26,6 +26,11 @@ const Album = () => {
     e.preventDefault()
     if (albums.some(album => album.name === newAlbumFromSelectedInput)) return console.log("found album with same name")
     createNewAlbum(newAlbumFromSelectedInput, checkedImages)
+  }
+
+  const handleDeleteSelected = () => {
+    deleteImages(currentAlbum, checkedImages)
+    setCheckedImages([])
   }
 
   useEffect(() => {
@@ -56,10 +61,10 @@ const Album = () => {
                     <input type="text" className='newFromSelectedInput' onChange={(e) => setNewAlbumFromSelectedInput(e.target.value)} value={newAlbumFromSelectedInput} placeholder='New album name...' required />
                     <button className='btn newFromSelectedBtn'>Create</button>
                   </form>
-                  <form className='deleteSelected flex' onSubmit={null}>
+                  <div className='deleteSelected flex'>
                     <p>Delete selected images?</p>
-                    <button className='btn deleteSelectedBtn'>Delete</button>
-                  </form>
+                    <button className='btn deleteSelectedBtn' onClick={handleDeleteSelected}>Delete</button>
+                  </div>
                 </>
                 : null
               }
