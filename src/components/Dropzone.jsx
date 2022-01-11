@@ -4,16 +4,22 @@ import useUpload from '../hooks/useUpload'
 
 const Dropzone = ({ user, albums, albumNameInput }) => {
   const { uploadImg, isLoading, progress, uploadError } = useUpload()
-  
-  const onDrop = useCallback(acceptedFiles => {
+
+  const onDrop = useCallback(async acceptedFiles => {
     if (!acceptedFiles.length) return
 
-    uploadImg(acceptedFiles[0], albumNameInput)
+    console.log(`acceptedFiles`, acceptedFiles)
+
+    for (let i = 0; i < acceptedFiles.length; i++) {
+
+      await uploadImg(acceptedFiles[i], albumNameInput)
+    }
+
   }, [user, albums, albumNameInput])
 
   const { getRootProps, getInputProps, isDragActive, isDragAccept, isDragReject } = useDropzone({
     accept: 'image/gif, image/jpeg, image/png, image/webp',
-    maxFiles: 1,
+    maxFiles: 10,
     onDrop,
   })
 
