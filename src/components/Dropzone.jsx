@@ -3,7 +3,7 @@ import { useDropzone } from 'react-dropzone'
 import useUpload from '../hooks/useUpload'
 
 const Dropzone = ({ user, albums, albumNameInput }) => {
-  const { uploadImg, isLoading, progress, uploadError } = useUpload()
+  const { uploadImg, isLoading, progress, setProgress, uploadError } = useUpload()
 
   const onDrop = useCallback(async acceptedFiles => {
     if (!acceptedFiles.length) return
@@ -11,7 +11,7 @@ const Dropzone = ({ user, albums, albumNameInput }) => {
     console.log(`acceptedFiles`, acceptedFiles)
 
     for (let i = 0; i < acceptedFiles.length; i++) {
-
+      setProgress(null)
       await uploadImg(acceptedFiles[i], albumNameInput)
     }
 
@@ -25,12 +25,15 @@ const Dropzone = ({ user, albums, albumNameInput }) => {
 
   return (
     <div className='dropzone flex' {...getRootProps()}>
+      <div className='progressBar' style={{width: `${progress}%`}}>
+      </div>
+
       <input {...getInputProps()} />
       {isDragActive ?
         isDragAccept ?
-          <p>File(s) seems good to upload!</p>
-          :
-          <p>Invalid file type</p>
+        <p>File(s) seems good to upload!</p>
+        :
+        <p>Invalid file type</p>
         :
         <p>Click or drag pics here to upload!</p>
       }

@@ -188,6 +188,7 @@ const useUpload = () => {
     isLoading,
     uploadError,
     progress,
+    setProgress,
     success,
   }
 }

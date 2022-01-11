@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHamburger } from '@fortawesome/free-solid-svg-icons'
+import { faHamburger, faImage } from '@fortawesome/free-solid-svg-icons'
 import { useAuth } from '../contexts/AuthContext'
 import '../styles/Navbar.css'
 
@@ -16,7 +16,7 @@ const Navbar = () => {
 
   return (
     <nav className='navbar flex'>
-      <Link to="/" className='navLogo'>Pictor</Link>
+      <Link to="/" className='navLogo'> <FontAwesomeIcon icon={faImage} className='picIcon' />Pictor</Link>
       <div className={`navMenu`}>
         {user &&
           <>
