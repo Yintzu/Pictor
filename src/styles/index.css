@@ -9,8 +9,6 @@
   --ERROR_COLOR: rgb(153, 68, 96);
   --ERROR_COLOR_DARK: rgb(105, 48, 67);
   --ERROR_BG: rgb(255, 208, 208);
-  --DROPZONE_BG: ;
-  /* --TEXT_COLOR: rgb(126, 89, 79); */
   --TEXT_DARK: rgb(49, 30, 25);
   --NAVBAR_HEIGHT: 5vh;
   --INPUT_HEIGHT: 2.5rem;
@@ -48,7 +46,7 @@ input {
   padding: 0 0.5rem;
   width: 50%;
   max-width: 500px;
-  min-width: 300px;
+  min-width: 230px;
   font-size: 1rem;
 }
 
@@ -147,8 +145,8 @@ a {
 }
 
 .mx1 {
-  margin-left: 1;
-  margin-right: 1;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .my0 {

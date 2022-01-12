@@ -33,10 +33,10 @@ const Lightbox = ({ album, lightboxDisplayImg, setLightboxDisplayImg, handleLike
         }
       </div>
       <div className='prevImgOverlay' onClick={handlePreviousImg}>
-        <FontAwesomeIcon icon={faChevronLeft} className='lightboxNavBtn' size='6x' />
+        <FontAwesomeIcon icon={faChevronLeft} className='lightboxNavBtn'  />
       </div>
       <div className='nextImgOverlay' onClick={handleNextImg}>
-        <FontAwesomeIcon icon={faChevronRight} className='lightboxNavBtn' size='6x' onClick={() => setLightboxDisplayImg(null)} />
+        <FontAwesomeIcon icon={faChevronRight} className='lightboxNavBtn'  onClick={() => setLightboxDisplayImg(null)} />
       </div>
       <FontAwesomeIcon icon={faTimesCircle} className='lightboxCloseBtn' size='4x' onClick={() => setLightboxDisplayImg(null)} />
     </div>

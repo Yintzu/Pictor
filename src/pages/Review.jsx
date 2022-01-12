@@ -6,6 +6,7 @@ import useUpload from '../hooks/useUpload'
 import ImageGrid from '../components/ImageGrid'
 import Lightbox from '../components/Lightbox'
 import Alert from '../components/Alert'
+import '../styles/Review.css'
 
 const Review = () => {
   const { userId, albumId } = useParams()
@@ -14,24 +15,32 @@ const Review = () => {
   const [lightboxDisplayImg, setLightboxDisplayImg] = useState(null)
   const [reviewedImages, setReviewedImages] = useState([])
   const [reviewerName, setReviewerName] = useState('')
+  const [pleaseReviewAll, setPleaseReviewAll] = useState(null)
 
   const handleLike = (image, verdict) => {
     setReviewedImages(prev => {
       const alreadyReviewed = prev.find(item => item.id === image.id)
       let tempArray = [...prev]
 
+      //If already clicked, filters out the image first
       if (alreadyReviewed) tempArray = tempArray.filter(item => item.id !== image.id)
 
+      //Then returns array with image removed if you "unclick a like"
       if (alreadyReviewed?.liked === verdict) return [...tempArray]
 
       return [...tempArray, { ...image, liked: verdict }]
     })
   }
 
+  const handleOk = (e) => {
+    e.preventDefault()
+    setPleaseReviewAll(false)
+  }
+
   const submitReviewedAlbum = (e) => {
     e.preventDefault()
 
-    if (reviewedImages.length !== album.images.length) return console.log("pls review all images")
+    if (reviewedImages.length !== album.images.length) return setPleaseReviewAll(true)
 
     const imagesToSend = reviewedImages.filter(item => item.liked === true).map(item => {
       const newItem = { ...item }
@@ -44,6 +53,7 @@ const Review = () => {
   }
 
   useEffect(() => {
+    //Supports real time update if photographer wants to add photos while you review lolol.
     const docRef = doc(db, userId, albumId)
 
     const unsub = onSnapshot(docRef, (doc) => {
@@ -53,25 +63,28 @@ const Review = () => {
     return unsub
   }, [])
 
-  useEffect(() => {
-    console.log(`reviewedImages`, reviewedImages)
-  }, [reviewedImages])
-
   return (
     <div className='page flex'>
-      <div className='container'>
-        {album && <>
+      <div className='container flex column justifyBetween'>
+        {album && <div>
           <h1 className='centerText'>{album.name}</h1>
           <ImageGrid album={album} setLightboxDisplayImg={setLightboxDisplayImg} reviewedImages={reviewedImages} handleLike={handleLike} />
-        </>
+        </div>
         }
-        {success &&
+        {success ?
           <Alert message={success} />
-        }
-        {!success &&
-          <form onSubmit={submitReviewedAlbum} className='flex'>
-            <input type="text" value={reviewerName} placeholder="Reviewer's name..." onChange={(e) => setReviewerName(e.target.value)} />
-            <button className='btn'>Done</button>
+          :
+          <form onSubmit={submitReviewedAlbum} className='submitReviewedDiv'>
+            {pleaseReviewAll ? <div className='flex'>
+              <p className='my0 mx1'>Please review all images</p>
+              <button onClick={handleOk} className='btn submitReviewedBtn'>Ok</button>
+            </div>
+              :
+              <div className='submitReviewedInputWrapper'>
+                <input type="text" value={reviewerName} placeholder="Reviewer's name..." onChange={(e) => setReviewerName(e.target.value)} />
+                <button className='btn submitReviewedBtn'>Done</button>
+              </div>
+            }
           </form>
         }
         {lightboxDisplayImg &&

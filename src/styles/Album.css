@@ -6,6 +6,7 @@
   border-radius: 15px;
   border: 2px dashed var(--PRIMARY_DARK);
   cursor: pointer;
+  font-weight: bold;
 }
 
 .dropzone p {
@@ -62,6 +63,7 @@
 
 .reviewLinkDiv {
   margin: 1rem 0;
+  text-align: center;
 }
 
 .reviewLink {

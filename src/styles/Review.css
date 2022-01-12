@@ -1,0 +1,46 @@
+.submitReviewedDiv{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  background: var(--PRIMARY_LIGHT_HOVER);
+  padding: 1rem;
+  border-radius: 15px;
+  margin: 0;
+  flex-direction: column;
+  margin: 1rem 0 0 0;
+}
+
+.submitReviewedDiv input{
+  margin: 0 0 1rem 0;
+  width: 100%;
+}
+
+.submitReviewedInputWrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+  flex-direction: column;
+}
+
+.submitReviewedBtn{
+  height: var(--INPUT_HEIGHT);
+  padding: 0 2rem;
+  max-width: 150px;
+}
+
+@media only screen and (min-width: 600px) {
+  .submitReviewedDiv{
+    flex-direction: row;
+  }
+
+  .submitReviewedInputWrapper{
+    flex-direction: row;
+  }
+
+  .submitReviewedDiv input{
+    margin: 0;
+  }
+}

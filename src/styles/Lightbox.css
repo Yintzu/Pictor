@@ -69,14 +69,22 @@
   display: flex;
   align-items: center;
   position: fixed;
+  font-size: 5rem;
+  transition: font-size 0.1s ease-in-out;
   inset: 0 50% 0 0;
+}
+
+.prevImgOverlay:hover, .nextImgOverlay:hover{
+  font-size: 6rem;
 }
 
 .nextImgOverlay {
   cursor: pointer;
   display: flex;
   align-items: center;
-  flex-direction: row-reverse;
   position: fixed;
+  font-size: 5rem;
   inset: 0 0 0 50%;
+  transition: font-size 0.1s ease-in-out;
+  flex-direction: row-reverse;
 }
