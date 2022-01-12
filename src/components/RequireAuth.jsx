@@ -6,7 +6,7 @@ const RequireAuth = ({ children, redirectTo = "/login" }) => {
   const { user } = useAuth()
 
   if (user) return children
-  else return <Navigate to={redirectTo} replace={true} />
+  return <Navigate to={redirectTo} replace={true} />
 }
 
 export default RequireAuth

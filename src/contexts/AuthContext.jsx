@@ -57,6 +57,8 @@ const AuthContextProvider = ({ children }) => {
     logoutUser
   }
 
+  if (user === undefined) return null
+
   return (
     <AuthContext.Provider value={values}>
       {children}

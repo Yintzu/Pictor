@@ -19,12 +19,13 @@ const Album = () => {
   const [currentAlbum, setCurrentAlbum] = useState()
   const [albumNameInput, setAlbumNameInput] = useState()
   const [newAlbumFromSelectedInput, setNewAlbumFromSelectedInput] = useState('')
+  const [newFromSelectedInfo, setNewFromSelectedInfo] = useState(null)
   const [checkedImages, setCheckedImages] = useState([])
   const [lightboxDisplayImg, setLightboxDisplayImg] = useState(null)
 
   const handleNewAlbumFromSelected = (e) => {
     e.preventDefault()
-    if (albums.some(album => album.name === newAlbumFromSelectedInput)) return console.log("found album with same name")
+    if (albums.some(album => album.name === newAlbumFromSelectedInput)) return setNewFromSelectedInfo('An album with that name already exists.')
     createNewAlbum(newAlbumFromSelectedInput, checkedImages)
   }
 
@@ -33,6 +34,7 @@ const Album = () => {
     setCheckedImages([])
   }
 
+  //Finds the album to display depending on url params
   useEffect(() => {
     if (albums) {
       const album = albums.find(album => album.id === id)
@@ -56,11 +58,21 @@ const Album = () => {
               <ReviewLink user={user} album={currentAlbum} />
               {checkedImages.length ?
                 <>
-                  <form className='newFromSelected flex' onSubmit={handleNewAlbumFromSelected}>
-                    <p>Create new album from selected images:</p>
-                    <input type="text" className='newFromSelectedInput' onChange={(e) => setNewAlbumFromSelectedInput(e.target.value)} value={newAlbumFromSelectedInput} placeholder='New album name...' required />
-                    <button className='btn newFromSelectedBtn'>Create</button>
-                  </form>
+                  {newFromSelectedInfo ?
+                    <div className='newFromSelected flex'>
+                      <p>{newFromSelectedInfo}</p>
+                      <button className='btn newFromSelectedBtn' onClick={() => setNewFromSelectedInfo(null)}>Ok</button>
+                    </div>
+                    :
+                    <form className='newFromSelected flex' onSubmit={handleNewAlbumFromSelected}>
+                      <p>Create new album from selected images:</p>
+                      <div className='newFromSelectedInputWrapper' style={{width: '100%', maxWidth: '500px'}}>
+
+                      <input type="text" className='newFromSelectedInput' onChange={(e) => setNewAlbumFromSelectedInput(e.target.value)} value={newAlbumFromSelectedInput} placeholder='New album name...' required />
+                      <button className='btn newFromSelectedBtn'>Create</button>
+                      </div>
+                    </form>
+                  }
                   <div className='deleteSelected flex'>
                     <p>Delete selected images?</p>
                     <button className='btn deleteSelectedBtn' onClick={handleDeleteSelected}>Delete</button>

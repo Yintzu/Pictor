@@ -17,7 +17,6 @@ const Home = () => {
   const handleOk = (e) => {
     e.preventDefault()
     e.stopPropagation()
-    if (!newAlbumNameInput) return
     createNewAlbum(newAlbumNameInput)
     setNewMode(false)
   }
@@ -39,11 +38,12 @@ const Home = () => {
         <div className='albumGrid'>
           <div className='albumGridItem flex column' onClick={() => setNewMode(true)}>
             <FontAwesomeIcon icon={faFolderPlus} size='6x' />
+            {/* New Album Form */}
             {newMode ?
-              <form action="submit" className='relative'>
+              <form action="submit" className='relative' onSubmit={handleOk}>
                 <input type='text' value={newAlbumNameInput} className='newAlbumNameInput' ref={newAlbumNameInputRef} onChange={(e) => setNewAlbumNameInput(e.target.value)} placeholder='Album name...' required />
                 <div className='newAlbumBtnWrapper'>
-                  <button className='newAlbumBtn btn' onClick={handleOk}>OK</button>
+                  <button className='newAlbumBtn btn'>OK</button>
                   <button className='newAlbumBtn btn' onClick={handleCancel}>Cancel</button>
                 </div>
               </form>

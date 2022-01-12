@@ -146,6 +146,11 @@ a {
   margin-right: 0;
 }
 
+.mx1 {
+  margin-left: 1;
+  margin-right: 1;
+}
+
 .my0 {
   margin-top: 0;
   margin-bottom: 0;

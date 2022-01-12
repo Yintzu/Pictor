@@ -8,11 +8,11 @@
   cursor: pointer;
 }
 
-.dropzone p{
+.dropzone p {
   z-index: 1;
 }
 
-.progressBar{
+.progressBar {
   position: absolute;
   background: rgb(176, 219, 136);
   border-radius: 15px;
@@ -20,7 +20,8 @@
   height: 100%;
 }
 
-.newFromSelected, .deleteSelected {
+.newFromSelected,
+.deleteSelected {
   background: var(--PRIMARY_LIGHT_HOVER);
   padding: 0.5rem 1rem;
   border-radius: 15px;
@@ -33,18 +34,29 @@
   width: 100%;
 }
 
-.newFromSelectedBtn, .deleteSelectedBtn {
+.newFromSelectedInputWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+  flex-direction: column;
+}
+
+.newFromSelectedBtn,
+.deleteSelectedBtn {
   padding: 0 2rem;
   height: var(--INPUT_HEIGHT);
   margin: 1rem 0 0.5rem 0;
+  max-width: 160px;
 }
 
-.deleteSelectedBtn{
+.deleteSelectedBtn {
   background: var(--ERROR_COLOR);
-  margin: 0 1rem;
+  margin: 0 0 0.5rem 0;
 }
 
-.deleteSelectedBtn:active{
+.deleteSelectedBtn:active {
   background: var(--ERROR_COLOR_DARK);
 }
 
@@ -57,13 +69,13 @@
   word-wrap: break-word;
 }
 
-.copyIcon{
+.copyIcon {
   cursor: pointer;
   margin: 0 1rem;
   font-size: 1.5rem;
 }
 
-.copied{
+.copied {
   position: absolute;
   pointer-events: none;
   color: var(--PRIMARY_LIGHT);
@@ -75,21 +87,21 @@
   left: -5px;
 }
 
-.titleInput{
+.titleInput {
   width: 50vw;
   min-width: 220px;
   max-width: 400px;
 }
 
-.titleBtn{
+.titleBtn {
   padding: 0 1rem;
 }
 
 @keyframes copied {
-  0%{
+  0% {
     opacity: 1;
   }
-  100%{
+  100% {
     opacity: 0;
   }
 }
@@ -99,11 +111,23 @@
     flex-direction: row;
   }
 
-  .deleteSelected{
+  .deleteSelected {
+    flex-direction: row;
+  }
+
+  .newFromSelectedInput{
+    margin-left: 1rem;
+  }
+
+  .newFromSelectedInputWrapper {
     flex-direction: row;
   }
 
   .newFromSelectedBtn {
     margin: 0;
+  }
+
+  .deleteSelectedBtn {
+    margin: 0 1rem;
   }
 }
