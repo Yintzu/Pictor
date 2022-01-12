@@ -19,6 +19,8 @@
   border-radius: 15px;
   left: 0;
   height: 100%;
+  width: 0%;
+  transition: width 0.1ms;
 }
 
 .newFromSelected,
@@ -48,13 +50,12 @@
 .deleteSelectedBtn {
   padding: 0 2rem;
   height: var(--INPUT_HEIGHT);
-  margin: 1rem 0 0.5rem 0;
+  margin: 0 0 0.5rem 0;
   max-width: 160px;
 }
 
 .deleteSelectedBtn {
   background: var(--ERROR_COLOR);
-  margin: 0 0 0.5rem 0;
 }
 
 .deleteSelectedBtn:active {
@@ -125,11 +126,8 @@
     flex-direction: row;
   }
 
+  .deleteSelectedBtn,
   .newFromSelectedBtn {
-    margin: 0;
-  }
-
-  .deleteSelectedBtn {
     margin: 0 1rem;
   }
 }

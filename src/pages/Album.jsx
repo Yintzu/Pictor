@@ -13,7 +13,7 @@ import '../styles/Album.css'
 
 const Album = () => {
   const { user } = useAuth()
-  const { createNewAlbum, deleteImages } = useUpload()
+  const { createNewAlbum, deleteImages, success, setSuccess } = useUpload()
   const { albums } = useFetchImages()
   const { id } = useParams()
   const [currentAlbum, setCurrentAlbum] = useState()
@@ -61,17 +61,23 @@ const Album = () => {
                   {newFromSelectedInfo ?
                     <div className='newFromSelected flex'>
                       <p>{newFromSelectedInfo}</p>
-                      <button className='btn newFromSelectedBtn' onClick={() => setNewFromSelectedInfo(null)}>Ok</button>
+                      <button className='btn newFromSelectedBtn mx1' onClick={() => setNewFromSelectedInfo(null)}>Ok</button>
                     </div>
                     :
-                    <form className='newFromSelected flex' onSubmit={handleNewAlbumFromSelected}>
-                      <p>Create new album from selected images:</p>
-                      <div className='newFromSelectedInputWrapper' style={{width: '100%', maxWidth: '500px'}}>
-
-                      <input type="text" className='newFromSelectedInput' onChange={(e) => setNewAlbumFromSelectedInput(e.target.value)} value={newAlbumFromSelectedInput} placeholder='New album name...' required />
-                      <button className='btn newFromSelectedBtn'>Create</button>
+                    success ?
+                      <div className='newFromSelected flex'>
+                        <p>New album created successfully! 🥳</p>
+                        <button className='btn newFromSelectedBtn mx1' onClick={() => setSuccess(null)}>Ok</button>
                       </div>
-                    </form>
+                      :
+                      <form className='newFromSelected flex' onSubmit={handleNewAlbumFromSelected}>
+                        <p>Create new album from selected images:</p>
+                        <div className='newFromSelectedInputWrapper' style={{ width: '100%', maxWidth: '500px' }}>
+
+                          <input type="text" className='newFromSelectedInput' onChange={(e) => setNewAlbumFromSelectedInput(e.target.value)} value={newAlbumFromSelectedInput} placeholder='New album name...' required />
+                          <button className='btn newFromSelectedBtn'>Create</button>
+                        </div>
+                      </form>
                   }
                   <div className='deleteSelected flex'>
                     <p>Delete selected images?</p>

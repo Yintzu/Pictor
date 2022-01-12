@@ -1,9 +1,10 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import useUpload from '../hooks/useUpload'
 
 const Dropzone = ({ user, albums, albumNameInput }) => {
   const { uploadImg, isLoading, progress, setProgress, uploadError } = useUpload()
+  const [uploadMessage, setUploadMessage] = useState(null)
 
   const onDrop = useCallback(async acceptedFiles => {
     if (!acceptedFiles.length) return
@@ -12,9 +13,11 @@ const Dropzone = ({ user, albums, albumNameInput }) => {
 
     for (let i = 0; i < acceptedFiles.length; i++) {
       setProgress(null)
+      setUploadMessage(`Images uploaded... ${i}/${acceptedFiles.length}`)
       await uploadImg(acceptedFiles[i], albumNameInput)
     }
-
+    setUploadMessage(null)
+    setProgress(0)
   }, [user, albums, albumNameInput])
 
   const { getRootProps, getInputProps, isDragActive, isDragAccept, isDragReject } = useDropzone({
@@ -25,17 +28,20 @@ const Dropzone = ({ user, albums, albumNameInput }) => {
 
   return (
     <div className='dropzone flex' {...getRootProps()}>
-      <div className='progressBar' style={{width: `${progress}%`}}>
+      <div className='progressBar' style={{ width: `${progress}%` }}>
       </div>
 
       <input {...getInputProps()} />
-      {isDragActive ?
-        isDragAccept ?
-        <p>File(s) seems good to upload!</p>
+      {uploadMessage ?
+        <p>{uploadMessage}</p>
         :
-        <p>Invalid file type</p>
-        :
-        <p>Click or drag pics here to upload!</p>
+        isDragActive ?
+          isDragAccept ?
+            <p>File(s) seems good to upload!</p>
+            :
+            <p>Invalid file type</p>
+          :
+          <p>Click or drag pics here to upload!</p>
       }
     </div>
   )

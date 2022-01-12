@@ -190,6 +190,7 @@ const useUpload = () => {
     progress,
     setProgress,
     success,
+    setSuccess,
   }
 }
 
