@@ -30,7 +30,7 @@ const Dropzone = ({ user, albums, albumNameInput, nameEditMode }) => {
     if (uploadMessage) return uploadMessage
     if (nameEditMode) return "Decide on an album name first dawg."
     if (isDragActive && isDragAccept) return "File(s) seems good to upload!"
-    return "Click or drag pics here max(10) to upload!"
+    return "Click or drag pics here (max 10) to upload!"
   }
 
   return (

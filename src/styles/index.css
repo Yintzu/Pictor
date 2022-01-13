@@ -104,6 +104,10 @@ a {
   text-align: center;
 }
 
+.bold{
+  font-weight: bold;
+}
+
 .none {
   display: none !important;
 }

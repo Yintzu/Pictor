@@ -75,8 +75,11 @@ const Review = () => {
           <Alert message={success} />
           : album &&
           <form onSubmit={submitReviewedAlbum} className='submitReviewedDiv'>
+            {!pleaseReviewAll && reviewedImages &&
+              <p className='centerText bold'>{reviewedImages.filter(item => item.liked === true).length} of {album.images.length} images liked.</p>
+            }
             {pleaseReviewAll ? <div className='flex'>
-              <p className='my0 mx1'>Please review all images</p>
+              <p className='mx1'>Please review all images</p>
               <button onClick={handleOk} className='btn submitReviewedBtn'>Ok</button>
             </div>
               :
