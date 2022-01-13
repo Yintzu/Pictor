@@ -25,7 +25,7 @@ const AuthContextProvider = ({ children }) => {
   const loginUser = async (email, password) => {
     setIsLoading(true)
     try {
-      const res = await signInWithEmailAndPassword(auth, email, password)
+      await signInWithEmailAndPassword(auth, email, password)
     } catch (e) {
       setError(e.message)
     }

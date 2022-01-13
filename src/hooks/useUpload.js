@@ -101,25 +101,7 @@ const useUpload = () => {
     setUploadError(false)
     setIsLoading(true)
 
-    const otherAlbums = albums.filter(item => item.id !== album.id)
-
-    for (let i = 0; i < album.images.length; i++) {
-      let existsInOtherAlbum
-
-      otherAlbums.forEach(otherAlbum => {
-        if (!existsInOtherAlbum) existsInOtherAlbum = otherAlbum.images.some(otherAlbumImage => album.images[i].path === otherAlbumImage.path)
-      })
-
-      if (!existsInOtherAlbum) {
-        try {
-          const storageRef = ref(storage, album.images[i].path)
-          await deleteObject(storageRef)
-        } catch (e) {
-          setUploadError(e)
-          console.log("Error: ", e.message)
-        }
-      }
-    }
+    checkIfInOtherAlbumIfNotDeleteFromStorage(album, album.images)
 
     try {
       const docRef = doc(db, user.uid, album.id)
@@ -144,25 +126,7 @@ const useUpload = () => {
         if (!selectedImages.some(image => image.id === item.id)) newImages.push(item)
       })
 
-      const otherAlbums = albums.filter(item => item.id !== album.id)
-
-      for (let i = 0; i < selectedImages.length; i++) {
-        let existsInOtherAlbum
-
-        otherAlbums.forEach(otherAlbum => {
-          if (!existsInOtherAlbum) existsInOtherAlbum = otherAlbum.images.some(otherAlbumImage => selectedImages[i].path === otherAlbumImage.path)
-        })
-
-        if (!existsInOtherAlbum) {
-          try {
-            const storageRef = ref(storage, selectedImages[i].path)
-            await deleteObject(storageRef)
-          } catch (e) {
-            setUploadError(e)
-            console.log("Error: ", e.message)
-          }
-        }
-      }
+      await checkIfInOtherAlbumIfNotDeleteFromStorage(album, selectedImages)
 
       await updateDoc(docRef, {
         images: newImages
@@ -172,6 +136,28 @@ const useUpload = () => {
       console.log("Error: ", e.message)
     } finally {
       setIsLoading(false)
+    }
+  }
+
+  const checkIfInOtherAlbumIfNotDeleteFromStorage = async (album, images) => {
+    const otherAlbums = albums.filter(item => item.id !== album.id)
+
+    for (let i = 0; i < images.length; i++) {
+      let existsInOtherAlbum
+
+      otherAlbums.forEach(otherAlbum => {
+        if (!existsInOtherAlbum) existsInOtherAlbum = otherAlbum.images.some(otherAlbumImage => images[i].path === otherAlbumImage.path)
+      })
+
+      if (!existsInOtherAlbum) {
+        try {
+          const storageRef = ref(storage, images[i].path)
+          await deleteObject(storageRef)
+        } catch (e) {
+          setUploadError(e)
+          console.log("Error: ", e.message)
+        }
+      }
     }
   }
 

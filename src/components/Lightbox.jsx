@@ -18,12 +18,6 @@ const Lightbox = ({ album, lightboxDisplayImg, setLightboxDisplayImg, handleLike
     else setLightboxDisplayImg(album.images[0])
   }
 
-  const checkStatus = (image) => {
-    const reviewedImage = reviewedImages.find(item => item.id === image.id)
-    if (!reviewedImage) return null
-    return reviewedImage.liked
-  }
-
   return (
     <div className='lightboxOverlay'>
       <div className='lightboxImgWrapper'>

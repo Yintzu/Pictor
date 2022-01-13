@@ -66,14 +66,14 @@ const Review = () => {
   return (
     <div className='page flex'>
       <div className='container flex column justifyBetween'>
-        {album && <div>
+        {album && <div className='w100'>
           <h1 className='centerText'>{album.name}</h1>
           <ImageGrid album={album} setLightboxDisplayImg={setLightboxDisplayImg} reviewedImages={reviewedImages} handleLike={handleLike} />
         </div>
         }
         {success ?
           <Alert message={success} />
-          :
+          : album &&
           <form onSubmit={submitReviewedAlbum} className='submitReviewedDiv'>
             {pleaseReviewAll ? <div className='flex'>
               <p className='my0 mx1'>Please review all images</p>
