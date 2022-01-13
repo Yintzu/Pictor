@@ -40,7 +40,7 @@ const Dropzone = ({ user, albums, albumNameInput, nameEditMode }) => {
       {!nameEditMode &&
         <input {...getInputProps()} />
       }
-      {renderInfoMessage()}
+      <p>{renderInfoMessage()}</p>
     </div>
   )
 }
