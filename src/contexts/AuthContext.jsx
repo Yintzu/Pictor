@@ -10,7 +10,6 @@ const AuthContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(null)
 
-
   const registerUser = async (email, password) => {
     setIsLoading(true)
     let res
@@ -37,7 +36,6 @@ const AuthContextProvider = ({ children }) => {
     return signOut(auth)
   }
 
-
   useEffect(() => {
     onAuthStateChanged(auth, (userResponse) => {
       if (userResponse) {
@@ -52,6 +50,7 @@ const AuthContextProvider = ({ children }) => {
     user,
     isLoading,
     error,
+    setError,
     registerUser,
     loginUser,
     logoutUser

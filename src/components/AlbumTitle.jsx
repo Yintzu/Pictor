@@ -3,21 +3,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen } from '@fortawesome/free-solid-svg-icons'
 import useUpload from '../hooks/useUpload'
 
-const AlbumTitle = ({ album, albumNameInput, setAlbumNameInput }) => {
+const AlbumTitle = ({ album, albumNameInput, setAlbumNameInput, nameEditMode, setNameEditMode }) => {
   const { updateAlbumName, isLoading } = useUpload()
-  const [editMode, setEditMode] = useState(false)
   const [oldName, setOldName] = useState(albumNameInput)
 
   const handleSaveName = () => {
-    if (oldName === albumNameInput) return setEditMode(false)
+    if (oldName === albumNameInput) return setNameEditMode(false)
     updateAlbumName(album.id, albumNameInput)
     setOldName(albumNameInput)
-    setEditMode(false)
+    setNameEditMode(false)
   }
 
   return (
     <>
-      {editMode ?
+      {nameEditMode ?
         <div className='flex'>
           <span className='flex'>
             <input type='text' className='titleInput mb2' value={albumNameInput} onChange={(e) => setAlbumNameInput(e.target.value)} disabled={isLoading} />
@@ -28,7 +27,7 @@ const AlbumTitle = ({ album, albumNameInput, setAlbumNameInput }) => {
         <h1 className='centerText mb2 mt0' style={{ height: 'var(--INPUT_HEIGHT)' }}>
           <span style={{ position: 'relative' }}>
             {album.name}
-            <FontAwesomeIcon icon={faPen} style={{ position: 'absolute', right: 'calc(0px - 3rem)', bottom: '5px', fontSize: '1.5rem', cursor: 'pointer' }} onClick={() => setEditMode(true)} />
+            <FontAwesomeIcon icon={faPen} style={{ position: 'absolute', right: 'calc(0px - 3rem)', bottom: '5px', fontSize: '1.5rem', cursor: 'pointer' }} onClick={() => setNameEditMode(true)} />
           </span>
         </h1>
       }

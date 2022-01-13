@@ -11,14 +11,14 @@ const ImageGrid = ({ album, setCheckedImages, setLightboxDisplayImg, reviewedIma
 
   return (
     <div className='imageGrid'>
-      {album.images.map((image, i) => (
-        <div className='imageGridItem' key={i}>
+      {album.images.map(image => (
+        <div className='imageGridItem' key={image.id}>
           <img src={image.url} className='imageGridItem' onClick={() => setLightboxDisplayImg(image)} />
           {setCheckedImages &&
             <input type="checkbox" className='imgCheckbox' onChange={(e) => handleCheck(e, image)} />
           }
           {reviewedImages &&
-            <LikeButtons reviewedImages={reviewedImages} handleLike={handleLike} currentImage={image} wrapperClassName={'imageGridLikeWrapper'}/>
+            <LikeButtons reviewedImages={reviewedImages} handleLike={handleLike} currentImage={image} wrapperClassName={'imageGridLikeWrapper'} />
           }
         </div>
       ))}

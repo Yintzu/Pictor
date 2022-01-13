@@ -18,6 +18,7 @@ const Album = () => {
   const { id } = useParams()
   const [currentAlbum, setCurrentAlbum] = useState()
   const [albumNameInput, setAlbumNameInput] = useState()
+  const [nameEditMode, setNameEditMode] = useState(false)
   const [newAlbumFromSelectedInput, setNewAlbumFromSelectedInput] = useState('')
   const [newFromSelectedInfo, setNewFromSelectedInfo] = useState(null)
   const [checkedImages, setCheckedImages] = useState([])
@@ -51,7 +52,7 @@ const Album = () => {
           <>
             <div className='w100'>
               <BackButton />
-              <AlbumTitle album={currentAlbum} albumNameInput={albumNameInput} setAlbumNameInput={setAlbumNameInput} />
+              <AlbumTitle album={currentAlbum} albumNameInput={albumNameInput} setAlbumNameInput={setAlbumNameInput} nameEditMode={nameEditMode} setNameEditMode={setNameEditMode} />
               <ImageGrid album={currentAlbum} setCheckedImages={setCheckedImages} setLightboxDisplayImg={setLightboxDisplayImg} />
             </div>
             <div className='w100'>
@@ -86,7 +87,7 @@ const Album = () => {
                 </>
                 : null
               }
-              <Dropzone albums={albums} user={user} albumNameInput={albumNameInput} />
+              <Dropzone albums={albums} user={user} albumNameInput={albumNameInput} nameEditMode={nameEditMode}/>
             </div>
           </>
         }

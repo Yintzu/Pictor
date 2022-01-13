@@ -4,7 +4,7 @@ import { useAuth } from '../contexts/AuthContext'
 import '../styles/Login.css'
 
 const Login = () => {
-  const { loginUser, isLoading, error, user } = useAuth()
+  const { loginUser, isLoading, error, setError, user } = useAuth()
   const navigate = useNavigate()
 
   const [emailInput, setEmailInput] = useState('')
@@ -14,11 +14,14 @@ const Login = () => {
     e.preventDefault()
     if (isLoading) return
     loginUser(emailInput, passwordInput)
-    console.log("sub");
   }
 
   useEffect(() => {
     if (user) navigate("/")
+
+    return () => {
+      setError(null)
+    }
   }, [user])
 
   return (

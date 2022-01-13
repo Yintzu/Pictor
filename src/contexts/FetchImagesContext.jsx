@@ -24,7 +24,6 @@ const FetchImagesContextProvider = ({ children }) => {
           docs.push({ id: doc.id, ...doc.data() })
         })
         setAlbums(docs)
-        console.log(`docs`, docs)
       })
     } else setAlbums([])
   }, [user])

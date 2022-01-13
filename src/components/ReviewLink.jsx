@@ -19,7 +19,7 @@ const ReviewLink = ({ user, album }) => {
 
   return (
     <div className='reviewLinkDiv'>
-      <strong>Invite Link: </strong>
+      <strong>Review Link: </strong>
       <span className='reviewLink' ref={linkEl}>
         {link}
       </span>

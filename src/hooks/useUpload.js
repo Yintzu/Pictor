@@ -5,7 +5,6 @@ import { collection, addDoc, doc, updateDoc, deleteDoc, arrayUnion } from 'fireb
 import { db, storage } from '../services/Firebase.js'
 import { useFetchImages } from '../contexts/FetchImagesContext'
 import { idGen } from './utilities'
-import { async } from '@firebase/util'
 
 const useUpload = () => {
   const { user } = useAuth()
@@ -49,13 +48,10 @@ const useUpload = () => {
 
       const existingAlbum = albums.find(album => album.name === albumName)
 
-      console.log(`existingAlbum found! Adding img`, existingAlbum)
-      console.log("trying to create docRef:", user.id, existingAlbum.id)
       const docRef = doc(db, user.uid, existingAlbum.id)
       await updateDoc(docRef, {
         images: arrayUnion(imageData)
       })
-
 
     } catch (e) {
       setUploadError(e)

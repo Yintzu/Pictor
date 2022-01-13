@@ -5,7 +5,7 @@ import { useAuth } from '../contexts/AuthContext'
 import '../styles/Register.css'
 
 const Register = () => {
-  const { user, registerUser, isLoading, error } = useAuth()
+  const { user, registerUser, isLoading, error, setError } = useAuth()
   const navigate = useNavigate()
 
   const [emailInput, setEmailInput] = useState('')
@@ -14,12 +14,16 @@ const Register = () => {
 
   const registerSubmitHandler = async (e) => {
     e.preventDefault()
-    if (passwordInput !== confirmPasswordInput) return console.log("passwords don't match")
+    if (passwordInput !== confirmPasswordInput) return setError("Passwords don't match.")
     await registerUser(emailInput, passwordInput)
   }
 
   useEffect(() => {
     if (user) navigate("/")
+
+    return () => {
+      setError(null)
+    }
   }, [user])
 
   return (

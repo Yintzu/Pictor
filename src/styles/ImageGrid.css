@@ -17,6 +17,7 @@
 }
 
 .imgCheckbox {
+  cursor: pointer;
   position: absolute;
   min-width: initial;
   top: 0;

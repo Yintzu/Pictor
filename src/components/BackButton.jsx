@@ -7,20 +7,18 @@ const BackButton = ({ absolute }) => {
   const navigate = useNavigate()
 
   const styles = {
-    cursor: 'pointer',
     alignSelf: 'start',
   }
 
   const stylesAbsolute = {
-    cursor: 'pointer',
     position: 'absolute',
     top: '1rem',
     left: '1rem',
   }
 
   return (
-    <div className='backButton' style={absolute ? stylesAbsolute : styles} onClick={() => navigate(-1)}>
-      <FontAwesomeIcon icon={faChevronCircleLeft} size='3x' />
+    <div className='backButton' style={absolute ? stylesAbsolute : styles} >
+      <FontAwesomeIcon icon={faChevronCircleLeft} size='3x' onClick={() => navigate(-1)} style={{cursor: 'pointer'}}/>
     </div>
   )
 }
