@@ -73,9 +73,9 @@ const Review = () => {
         }
         {success ?
           <Alert message={success} />
-          : album &&
+          : album && reviewedImages &&
           <form onSubmit={submitReviewedAlbum} className='submitReviewedDiv'>
-            {!pleaseReviewAll && reviewedImages &&
+            {!pleaseReviewAll &&
               <p className='centerText bold'>{reviewedImages.filter(item => item.liked === true).length} of {album.images.length} images liked.</p>
             }
             {pleaseReviewAll ? <div className='flex'>
