@@ -85,7 +85,7 @@ const Review = () => {
               :
               <div className='submitReviewedInputWrapper'>
                 <input type="text" value={reviewerName} placeholder="Reviewer's name..." onChange={(e) => setReviewerName(e.target.value)} />
-                <button className='btn submitReviewedBtn'>Done</button>
+                <button className='btn submitReviewedBtn' type='submit'>Done</button>
               </div>
             }
           </form>
