@@ -48,7 +48,7 @@ const Review = () => {
       return newItem
     })
 
-    createNewAlbum(`${album.name}-${reviewerName}-${Date.now()}`, imagesToSend)
+    createNewAlbum(`${album.name}-${reviewerName}-${Date.now()}`, imagesToSend, userId)
     setReviewedImages(null)
   }
 

@@ -78,14 +78,14 @@ const useUpload = () => {
     }
   }
 
-  const createNewAlbum = async (albumName, images = []) => {
+  const createNewAlbum = async (albumName, images = [], uid = user.uid) => {
     setUploadError(false)
     setIsLoading(true)
     try {
-      const collectionRef = collection(db, user.uid)
+      const collectionRef = collection(db, uid)
       await addDoc(collectionRef, {
         name: albumName,
-        owner: user.uid,
+        owner: uid,
         images: images
       })
       setSuccess('Album created successfully!')
